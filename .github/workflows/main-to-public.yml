@@ -7,7 +7,6 @@ jobs:
   job:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/create-github-app-token@v1
         id: app-token
         with:
@@ -17,13 +16,10 @@ jobs:
           repositories: |
             public-env
           permission-contents: write
-      - name: Set for gh
-        run: |
-          echo ${{ steps.app-token.outputs.token }} | gh auth login --with-token
-          gh auth status
+      - uses: actions/checkout@v4
       - name: Add public repository origin
         run: |
-          git remote add public https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/appare45/env.git
+          git remote add public https://github.com/appare45/env.git
       - name: Push public branch to public repository
         run: |
           git push -u public public
