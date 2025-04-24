@@ -17,6 +17,9 @@ jobs:
           repositories: |
             env
           permission-contents: write
+      - name: Set for gh
+        run: |
+          gh auth login --with-token < ${{ steps.app-token.outputs.token }}
       - name: Add public repository origin
         run: |
           git remote add public https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/appare45/env.git
