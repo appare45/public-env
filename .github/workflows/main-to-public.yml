@@ -13,10 +13,6 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: |
-            env
-          permission-contents: write
       - name: Set for gh
         run: |
           echo ${{ steps.app-token.outputs.token }} | gh auth login --with-token
