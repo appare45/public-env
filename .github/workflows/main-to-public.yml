@@ -17,6 +17,8 @@ jobs:
             public-env
           permission-contents: write
       - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
       - name: Add public repository origin
         run: |
           git remote add public https://github.com/appare45/public-env.git
