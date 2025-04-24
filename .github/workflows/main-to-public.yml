@@ -15,6 +15,7 @@ jobs:
           owner: ${{ github.repository_owner }}
           repositories: |
             public-env
+            private-env
           permission-contents: write
       - uses: actions/checkout@v4
         with:
