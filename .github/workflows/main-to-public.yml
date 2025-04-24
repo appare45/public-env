@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Add public repository origin
         run: |
-          git remote add public https://github.com/appare45/env.git
+          git remote add public https://github.com/appare45/public-env.git
       - name: Push public branch to public repository
         run: |
           git push -u public public
