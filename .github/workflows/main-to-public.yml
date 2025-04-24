@@ -18,7 +18,7 @@ jobs:
             env
       - name: Add public repository origin
         run: |
-          git remote add public https://github.com/appare45/env.git
+          git remote add public https://${{ steps.app-token.outputs.token }}@github.com/appare45/env.git
       - name: Push public branch to public repository
         run: |
           git push -u public public
