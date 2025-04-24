@@ -26,13 +26,17 @@ jobs:
           git remote add private https://github.com/appare45/private-env.git
       - name: Push to public repository
         if: github.repository == 'appare45/private-env'
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git switch -c public-sync
           git push -u public public-sync
-          gh pr create --base public --head public-sync --title "Sync public branch" --body "Sync public branch from private repository"
+          gh pr create -R appare45/public-env --base public --head public-sync --title "Sync public branch" --body "Sync public branch from private repository"
       - name: Push to private repository
         if: github.repository == 'appare45/public-env'
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git switch -c private-sync
           git push -u private private-sync
-          gh pr create --base private --head private-sync --title "Sync private branch" --body "Sync private branch from public repository"
+          gh pr create -R appare45/private-env --base private --head private-sync --title "Sync private branch" --body "Sync private branch from public repository"
