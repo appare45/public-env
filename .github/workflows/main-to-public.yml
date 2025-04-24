@@ -23,8 +23,12 @@ jobs:
       - name: Add public repository origin
         run: |
           git remote add public https://github.com/appare45/public-env.git
-          git remote add private https://github.com/appare45/public-env.git
-      - name: Push public branch to public repository
+          git remote add private https://github.com/appare45/private-env.git
+      - name: Push to public repository
+        if: github.repository.name == 'appare45/private-env'
         run: |
           git push -u public public
+      - name: Push to private repository
+        if: github.repository.name == 'appare45/public-env'
+        run: |
           git push -u private public
