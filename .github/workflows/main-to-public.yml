@@ -15,7 +15,7 @@ jobs:
           private-key: ${{ secrets.PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
           repositories: |
-            public
+            env
       - name: Add public repository origin
         run: |
           git remote add public https://github.com/appare45/env.git
