@@ -27,8 +27,10 @@ jobs:
       - name: Push to public repository
         if: github.repository == 'appare45/private-env'
         run: |
+          git pull public
           git push -u public public
       - name: Push to private repository
         if: github.repository == 'appare45/public-env'
         run: |
+          git pull private
           git push -u private public
