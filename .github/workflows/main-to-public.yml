@@ -16,7 +16,7 @@ jobs:
           owner: ${{ github.repository_owner }}
           repositories: |
             env
-          permmision-contents: write
+          permission-contents: write
       - name: Add public repository origin
         run: |
           git remote add public https://${{ steps.app-token.outputs.token }}@github.com/appare45/env.git
