@@ -27,10 +27,12 @@ jobs:
       - name: Push to public repository
         if: github.repository == 'appare45/private-env'
         run: |
-          git pull public
-          git push -u public public
+          git switch -c public-sync
+          git push -u public public-sync
+          gh pr create --base public --head public-sync --title "Sync public branch" --body "Sync public branch from private repository"
       - name: Push to private repository
         if: github.repository == 'appare45/public-env'
         run: |
-          git pull private
-          git push -u private public
+          git switch -c private-sync
+          git push -u private private-sync
+          gh pr create --base private --head private-sync --title "Sync private branch" --body "Sync private branch from public repository"
